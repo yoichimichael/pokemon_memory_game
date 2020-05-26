@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 })
 
+// New user creation
 document.addEventListener('submit', (e)=>{
     e.preventDefault()
     const newUserName = e.target[0].value
@@ -17,4 +18,6 @@ document.addEventListener('submit', (e)=>{
     })
     .then(response => response.json())
     .then(console.log)
+    // change display to reflect created user
+    // hide sign-up and sign-in form
 })
