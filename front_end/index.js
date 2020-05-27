@@ -12,13 +12,11 @@ document.addEventListener('click', (e)=>{
     const userDiv = document.querySelector('#user-div')
     const authDiv = document.querySelector('#auth-div')
     if (e.target.textContent ==="Sign Up" ){
-        // e.preventDefault()
         fetch(USERS_URL)
         .then(response => response.json())
         .then(users => {
             const foundUser = users.find(function (user){return user.username === inputName})
             if (foundUser){
-                // document.querySelector('#error').style.display = "block"
                 alert("This username is already taken!")
                 document.querySelector("#login-field").value = ""
             } else{
@@ -62,6 +60,7 @@ document.addEventListener('click', (e)=>{
         userDiv.innerHTML = ""
         userDiv.dataset.userId = ''
     } else if (e.target.id === "start-button"){
+        e.target.style.display = 'none'
         loadBoard()
     }
 })
