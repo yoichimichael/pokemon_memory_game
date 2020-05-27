@@ -48,6 +48,10 @@ document.addEventListener('click', (e)=>{
                 userDiv.dataset.userId = foundUser.id
                 authDiv.style.display = "none"
                 document.querySelector("#login-field").value = ""
+                const startGame = document.createElement('button')
+                startGame.id="start-button"
+                const cardsContainer = document.getElementById('cards-container')
+                cardsContainer.appendChild(startGame)
             } else{
                 alert("There is no user with that username. Check your spelling! LOSER!")
             }

@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
- <script type="text/javascript" src="index.js"></script>
+      <meta charset="UTF-8">
+      <script type="text/javascript" src="index.js"></script>
+      <script type="text/javascript" src="card-logic.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <header>Pokemon Memory Card Game</header>
-        <div display="none" id="error"></div>
-        <div id="user-div"></div>
-        <div id="auth-div">
-            <input id="login-field" type="text-field" placeholder = "Username">
-            <button>Sign Up</button>
-            <button>Log In</button>
-        </div>
-        <div id="score-panel"></div>
-        <div id="game"></div>
-
+      <div id="board-container">
+          <header>Pokemon Memory Card Game</header>
+          <div id="menu-container">
+            <div display="none" id="error"></div>
+            <div id="user-div"></div>
+            <div id="auth-div">
+                <input id="login-field" type="text-field" placeholder = "Username">
+                <button>Sign Up</button>
+                <button>Log In</button>
+            </div>
+            <div id="score-panel"></div>
+          </div>
+          <div id="cards-container"></div>
+      </div>
     </body>
 </html>
