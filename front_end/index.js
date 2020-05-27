@@ -50,6 +50,7 @@ document.addEventListener('click', (e)=>{
                 document.querySelector("#login-field").value = ""
                 const startGame = document.createElement('button')
                 startGame.id="start-button"
+                startGame.textContent = "Start Game"
                 const cardsContainer = document.getElementById('cards-container')
                 cardsContainer.appendChild(startGame)
             } else{
@@ -60,24 +61,12 @@ document.addEventListener('click', (e)=>{
         authDiv.style.display = "block"
         userDiv.innerHTML = ""
         userDiv.dataset.userId = ''
+    } else if (e.target.id === "start-button"){
+        loadBoard()
     }
 })
-// document.addEventListener('submit', (e)=>{
-//     e.preventDefault()
-//     const newUserName = e.target[0].value
-//     fetch(USERS_URL,{
-//         method: "POST",
-//         headers: headers,
-//         body: JSON.stringify({
-//             username: e.target[0].value
-//         })
-//     })
-//     .then(response => response.json())
-//     .then(newUser =>{
-//         document.querySelector('#user-div').innerHTML=`<p>Welome ${newUser.username}</p>`
-//         document.querySelector('#user-div').dataset.userId = newUser.id
-//         document.querySelector('#sign-up').style.display = "none"
-//     })
-//     // change display to reflect created user
-//     // hide sign-up and sign-in form
-// })
+
+const loadBoard = () =>{
+    const cardsContainer = document.getElementById('cards-container')
+
+}
