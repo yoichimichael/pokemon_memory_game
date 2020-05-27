@@ -13,6 +13,15 @@
   border: 3px solid #cc8806;
 }
 
+#cards-container{
+  display: flexbox
+}
+
 header {
   margin-left: 20px;
 }
+
+.poke-card-div{
+  display: flexbox;
+}
+

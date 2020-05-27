@@ -67,6 +67,73 @@ document.addEventListener('click', (e)=>{
 })
 
 const loadBoard = () =>{
-    const cardsContainer = document.getElementById('cards-container')
+    addPokemonCards()
+}
 
+const addPokemonCards = () =>{
+    const cardsContainer = document.getElementById('cards-container')
+    const newCardSet = newPokemonSetof20()
+    newCardSet.forEach(pokeAdress =>{
+        const newDiv = document.createElement('div')
+        newDiv.className = "poke-card-div"
+        const newImg = document.createElement('img')
+        newImg.src = pokeAdress
+        newDiv.appendChild(newImg)
+        cardsContainer.appendChild(newDiv)
+    })
+}
+
+
+const newPokemonSetof20 = () => {
+    let setOf10 = []
+    for(let i = 0; i<10;i++){
+        setOf10.push(`./assets/${randomPokemonNumber()}.png`)
+    }
+    let setof20 = setOf10.concat(setOf10)
+    randomizeArray(setof20)
+    return setof20
+}
+
+const randomizeArray= (array) =>{
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            let temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+}
+
+    // setOf10.forEach(pokeAddress=>{
+    //     let coinFlip = Math.floor(Math.random()*(2) + 1)
+    //     if (coinFlip === 2){
+    //         newSet.push(pokeAddress)
+    //     } else if (coinFlip ===1){
+    //         newSet.unshift(pokeAddress)
+    //     }
+    // })
+    // setOf10.forEach(pokeAddress=>{
+    //     let coinFlip = Math.floor(Math.random()*(2) + 1)
+    //     if (coinFlip === 2){
+    //         newSet.push(pokeAddress)
+    //     } else if (coinFlip ===1){
+    //         newSet.unshift(pokeAddress)
+    //     }
+    // })
+    // return newSet
+
+
+
+const randomPokemonNumber = ()=>{
+    let pokeInt = Math.floor(Math.random()*(151) + 1)
+    if (pokeInt > 99){
+        return pokeInt
+    } else if( pokeInt > 9) {
+        let pokeString = pokeInt.toString()
+        let pokeString2 = "0" + pokeString
+        return pokeString2
+    } else{
+        let pokeString = pokeInt.toString()
+        pokeString = "00" + pokeString
+        return pokeString
+    }
 }
