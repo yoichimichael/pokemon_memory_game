@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 // New user creation
 
 document.addEventListener('click', (e)=>{
-    console.log(e.target)
+    // console.log(e.target)
     const inputName = document.querySelector("#login-field").value
     const userDiv = document.querySelector('#user-div')
     const authDiv = document.querySelector('#auth-div')
@@ -67,16 +67,46 @@ document.addEventListener('click', (e)=>{
     }
 })
 
-
+let firstImage = ''
+let score = 0
+let strikes = 0
 const startGame = () =>{
+    const cardsContainer = document.getElementById('cards-container') 
     window.setTimeout(function(){hideCards();}, 2000);
-    document.addEventListener('click', (e)=>{
-        if(e.target.className === "card__image"){
-            // e.target.parentNode.parentNode.classList.toggle('is-flipped');
-            e.target.style.opacity = "1"
-        }
-    })
+    // while (strikes < 3) {
+        document.addEventListener('click', (e)=>{
+            if(e.target.className === "card__image"){
+                // e.target.parentNode.parentNode.classList.toggle('is-flipped');
+                console.log(e.target.src)
+                e.target.style.opacity = "1"
+                if(firstImage===false){
+                    firstImage = e.target
+                    console.log(firstImage)
+                } else if(firstImage===true){
+                    if (firstImage.src===e.target.src){
+                        firstImage = ''
+                        score++
+                        console.log(score)
+                    } else{
+                        e.target.style.opacity = "0"
+                        firstImage.style.opacity = "0"
+                        strikes++
+                        console.log(strikes)
+                        if (strikes>2){
+                            cardsContainer.innerHTML = ''
+                            const startGame = document.createElement('button')
+                            startGame.id="start-button"
+                            startGame.textContent = "Start Game"
+                            cardsContainer.appendChild(startGame)
+                            return "game over"
+                        }
+                    }
+                }
+            }
+        })
+    // }
     
+
 }
 
 const hideCards = () =>{
