@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 // New user creation
 
 document.addEventListener('click', (e)=>{
+    console.log(e.target)
     const inputName = document.querySelector("#login-field").value
     const userDiv = document.querySelector('#user-div')
     const authDiv = document.querySelector('#auth-div')
@@ -62,8 +63,31 @@ document.addEventListener('click', (e)=>{
     } else if (e.target.id === "start-button"){
         e.target.style.display = 'none'
         loadBoard()
+        startGame()
     }
 })
+
+
+const startGame = () =>{
+    window.setTimeout(function(){hideCards();}, 2000);
+    document.addEventListener('click', (e)=>{
+        if(e.target.className === "card__image"){
+            // e.target.parentNode.parentNode.classList.toggle('is-flipped');
+            e.target.style.opacity = "1"
+        }
+    })
+    
+}
+
+const hideCards = () =>{
+    const cardImages = document.querySelectorAll('img')
+        for(const key in cardImages){
+            cardImages[key].style= "opacity:0;"
+        }
+        console.log("hiding cards")
+}
+
+// This stuff loads cards to the board
 
 const loadBoard = () =>{
     addPokemonCards()
@@ -72,13 +96,24 @@ const loadBoard = () =>{
 const addPokemonCards = () =>{
     const cardsContainer = document.getElementById('cards-container')
     const newCardSet = newPokemonSetof20()
-    newCardSet.forEach(pokeAdress =>{
-        const newDiv = document.createElement('div')
-        newDiv.className = "poke-card-div"
+    newCardSet.forEach(pokeAddress =>{
+        const newPokeDiv = document.createElement('div')
+        newPokeDiv.className = "scene"
+        const newPokeCard = document.createElement('div')
+        newPokeCard.className = "card"
+        const newFrontDiv = document.createElement('div')
+        newFrontDiv.className = "card__face card__face--front"
         const newImg = document.createElement('img')
-        newImg.src = pokeAdress
-        newDiv.appendChild(newImg)
-        cardsContainer.appendChild(newDiv)
+        newImg.src = pokeAddress
+        newImg.className = 'card__image'
+        newFrontDiv.appendChild(newImg)
+        const newBackDiv = document.createElement('div')
+        newBackDiv.textContent= "?"
+        newBackDiv.className = "card__face card__face--back"
+        newPokeCard.appendChild(newFrontDiv)
+        newPokeCard.appendChild(newBackDiv)
+        newPokeDiv.appendChild(newPokeCard)
+        cardsContainer.appendChild(newPokeDiv)
     })
 }
 
