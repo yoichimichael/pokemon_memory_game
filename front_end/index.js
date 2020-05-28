@@ -78,20 +78,23 @@ const startGameLoop = () =>{
 
 const hideCards = () =>{
     const cards = document.querySelectorAll('.card')
-    for(const key in cards){
-        cards[key].classList.toggle('is-flipped')
-    }
-    for(const card of cards){
-        card.addEventListener('click', (e) => {
+    for(let i=0;i<cards.length;i++){
+        cards[i].classList.toggle('is-flipped')
+        cards[i].addEventListener('click', (e) => {
             console.log(e.target)
-            flipCard()
+            flipCard(cards[i])
     })
-}
-}
+    // for(const key of cards){
+    //     cards[key].addEventListener('click', (e) => {
+    //         console.log(e.target)
+    //         flipCard(e.target)
+    // })
+    // }
+}}
 
-const flipCard = (e) =>{
-    e.target.classList.toggle('is-flipped')
-    e.target.classList.toggle('disabled')
+const flipCard = (node) =>{
+    node.classList.toggle('is-flipped')
+    node.classList.toggle('disabled')
 }
 
 
