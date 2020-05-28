@@ -62,66 +62,41 @@ document.addEventListener('click', (e)=>{
         userDiv.dataset.userId = ''
     } else if (e.target.id === "start-button"){
         e.target.style.display = 'none'
-        loadBoard()
-        startGame()
+        startGameLoop()
     }
 })
 
 let firstImage = ''
 let score = 0
 let strikes = 0
-const startGame = () =>{
+const startGameLoop = () =>{
     const cardsContainer = document.getElementById('cards-container') 
+    const cardImageSrcs = addPokemonCards()
     window.setTimeout(function(){hideCards();}, 2000);
-    // while (strikes < 3) {
-        document.addEventListener('click', (e)=>{
-            if(e.target.className === "card__image"){
-                // e.target.parentNode.parentNode.classList.toggle('is-flipped');
-                console.log(e.target.src)
-                e.target.style.opacity = "1"
-                if(firstImage===false){
-                    firstImage = e.target
-                    console.log(firstImage)
-                } else if(firstImage===true){
-                    if (firstImage.src===e.target.src){
-                        firstImage = ''
-                        score++
-                        console.log(score)
-                    } else{
-                        e.target.style.opacity = "0"
-                        firstImage.style.opacity = "0"
-                        strikes++
-                        console.log(strikes)
-                        if (strikes>2){
-                            cardsContainer.innerHTML = ''
-                            const startGame = document.createElement('button')
-                            startGame.id="start-button"
-                            startGame.textContent = "Start Game"
-                            cardsContainer.appendChild(startGame)
-                            return "game over"
-                        }
-                    }
-                }
-            }
-        })
-    // }
-    
-
+    console.log(cardImageSrcs)
 }
 
 const hideCards = () =>{
-    const cardImages = document.querySelectorAll('img')
-        for(const key in cardImages){
-            cardImages[key].style= "opacity:0;"
-        }
-        console.log("hiding cards")
+    const cards = document.querySelectorAll('.card')
+    for(const key in cards){
+        cards[key].classList.toggle('is-flipped')
+    }
+    for(const card of cards){
+        card.addEventListener('click', (e) => {
+            console.log(e.target)
+            flipCard()
+    })
 }
+}
+
+const flipCard = (e) =>{
+    e.target.classList.toggle('is-flipped')
+    e.target.classList.toggle('disabled')
+}
+
+
 
 // This stuff loads cards to the board
-
-const loadBoard = () =>{
-    addPokemonCards()
-}
 
 const addPokemonCards = () =>{
     const cardsContainer = document.getElementById('cards-container')
@@ -133,18 +108,19 @@ const addPokemonCards = () =>{
         newPokeCard.className = "card"
         const newFrontDiv = document.createElement('div')
         newFrontDiv.className = "card__face card__face--front"
-        const newImg = document.createElement('img')
-        newImg.src = pokeAddress
-        newImg.className = 'card__image'
-        newFrontDiv.appendChild(newImg)
+        newFrontDiv.style.backgroundImage = `url(${pokeAddress})`
+        // const newImg = document.createElement('img')
+        // newImg.src = pokeAddress
+        // newImg.className = 'card__image'
+        // newFrontDiv.appendChild(newImg)
         const newBackDiv = document.createElement('div')
-        newBackDiv.textContent= "?"
         newBackDiv.className = "card__face card__face--back"
         newPokeCard.appendChild(newFrontDiv)
         newPokeCard.appendChild(newBackDiv)
         newPokeDiv.appendChild(newPokeCard)
         cardsContainer.appendChild(newPokeDiv)
     })
+    return newCardSet
 }
 
 
@@ -167,6 +143,22 @@ const randomizeArray= (array) =>{
         }
 }
 
+const randomPokemonNumber = ()=>{
+    let pokeInt = Math.floor(Math.random()*(151) + 1)
+    if (pokeInt > 99){
+        return pokeInt
+    } else if( pokeInt > 9) {
+        let pokeString = pokeInt.toString()
+        let pokeString2 = "0" + pokeString
+        return pokeString2
+    } else{
+        let pokeString = pokeInt.toString()
+        pokeString = "00" + pokeString
+        return pokeString
+    }
+}
+
+// Old random set function
     // setOf10.forEach(pokeAddress=>{
     //     let coinFlip = Math.floor(Math.random()*(2) + 1)
     //     if (coinFlip === 2){
@@ -185,19 +177,37 @@ const randomizeArray= (array) =>{
     // })
     // return newSet
 
-
-
-const randomPokemonNumber = ()=>{
-    let pokeInt = Math.floor(Math.random()*(151) + 1)
-    if (pokeInt > 99){
-        return pokeInt
-    } else if( pokeInt > 9) {
-        let pokeString = pokeInt.toString()
-        let pokeString2 = "0" + pokeString
-        return pokeString2
-    } else{
-        let pokeString = pokeInt.toString()
-        pokeString = "00" + pokeString
-        return pokeString
-    }
-}
+// Old Game Listener
+// document.addEventListener('click', (e)=>{
+//     if(e.target.className === "card__image"){
+//         // e.target.parentNode.parentNode.classList.toggle('is-flipped');
+        
+//         if (e.target.style.opacity === "0"){
+//             e.target.style.opacity = "1"
+//             if(firstImage===false){
+//                 firstImage = e.target
+//                 console.log(firstImage)
+//             } else if(firstImage===true){
+//                 if (firstImage.src===e.target.src){
+//                     firstImage = ''
+//                     score++
+//                     console.log(score)
+//                 } else{
+//                     e.target.style.opacity = "0"
+//                     firstImage.style.opacity = "0"
+//                     strikes++
+//                     console.log(strikes)
+//                     if (strikes>2){
+//                         cardsContainer.innerHTML = ''
+//                         const startGame = document.createElement('button')
+//                         startGame.id="start-button"
+//                         startGame.textContent = "Start Game"
+//                         cardsContainer.appendChild(startGame)
+//                         return "game over"
+//                     }
+//                 }
+//             }
+//         }
+        
+//     }
+// })

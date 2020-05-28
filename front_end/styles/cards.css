@@ -15,6 +15,8 @@
     position: relative;
     transition: transform 1s;
     transform-style: preserve-3d;
+    box-shadow: 2px 2px;
+    border-radius: 4px;
   }
 
 .card__face {
@@ -26,6 +28,7 @@
 
 .card__face--front {
     background: red;
+    border-radius: 4px;
 }
 .card__image{
     padding: 2px;
@@ -37,4 +40,7 @@
 
 .card.is-flipped {
     transform: rotateY(-180deg);
+}
+.card.disabled{
+    pointer-events: none;
 }
