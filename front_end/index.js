@@ -66,9 +66,10 @@ document.addEventListener('click', (e)=>{
     }
 })
 
-let firstImage = ''
+let flippedCards = []
 let score = 0
-let strikes = 0
+let strikes = 0 
+let moves = 0
 const startGameLoop = () =>{
     const cardsContainer = document.getElementById('cards-container') 
     const cardImageSrcs = addPokemonCards()
@@ -81,20 +82,32 @@ const hideCards = () =>{
     for(let i=0;i<cards.length;i++){
         cards[i].classList.toggle('is-flipped')
         cards[i].addEventListener('click', (e) => {
-            console.log(e.target)
             flipCard(cards[i])
     })
-    // for(const key of cards){
-    //     cards[key].addEventListener('click', (e) => {
-    //         console.log(e.target)
-    //         flipCard(e.target)
-    // })
-    // }
 }}
 
 const flipCard = (node) =>{
     node.classList.toggle('is-flipped')
     node.classList.toggle('disabled')
+    flippedCards.push(node)
+    if (flippedCards.length === 2){
+        moves++
+        if (flippedCards[0].children[0].style.backgroundImage === flippedCards[1].children[0].style.backgroundImage){
+            console.log(flippedCards)
+            score++
+            flippedCards = []
+            // change styling to demonstrate match
+        }else{
+            setTimeout(function(){
+                flippedCards[0].classList.toggle('disabled')
+                flippedCards[0].classList.toggle('is-flipped')
+                flippedCards[1].classList.toggle('disabled')
+                flippedCards[1].classList.toggle('is-flipped')
+                strikes++
+                flippedCards = []
+            }, 1200)
+        }
+    }
 }
 
 
