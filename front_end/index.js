@@ -63,9 +63,11 @@ document.addEventListener('click', (e)=>{
     } else if (e.target.id === "start-button"){
         e.target.style.display = 'none'
         startGameLoop()
+        gameMaster()
     }
 })
 
+// `°~,_,~°`This is the actual game logic`°~,_,~°`
 let flippedCards = []
 let score = 0
 let strikes = 0 
@@ -110,7 +112,22 @@ const flipCard = (node) =>{
     }
 }
 
+const gameMaster = () => {
+    
+    // Show Timer on page
+    // setInterval(timer,1000)
 
+    // Show End Game Screen, High Scores, Start New Game
+    // setInterval(gameOver, 300000)
+}
+
+const timer = ()=>{
+
+}
+
+const gameOver = () =>{
+    
+}
 
 // This stuff loads cards to the board
 
