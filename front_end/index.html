@@ -9,9 +9,13 @@
     </head>
     <body>
       <div id="board-container">
-          <header>Pokemon Memory Card Game</header>
+          <header>Pokemon Memory Card Game</header>          
+          <div display="none" class="modal" id="end-game">
+            <div class="modal-content" id="modal-display-box">
+              <span class="close">GAME OVER BABY</span>
+            </div>
+          </div>
           <div id="menu-container">
-            <div display="none" id="error"></div>
             <div id="user-div"></div>
             <div id="auth-div">
                 <input id="login-field" type="text-field" placeholder = "Username">

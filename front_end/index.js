@@ -67,29 +67,32 @@ document.addEventListener('click', (e)=>{
     }
 })
 
+
 // This stuff loads cards to the board
 
 const addPokemonCards = () =>{
+
     const cardsContainer = document.getElementById('cards-container')
+    cardsContainer.innerHTML = ''
     const newCardSet = newPokemonSetof20()
     newCardSet.forEach(pokeAddress =>{
-        const newPokeDiv = document.createElement('div')
-        newPokeDiv.className = "scene"
-        const newPokeCard = document.createElement('div')
-        newPokeCard.className = "card"
-        const newFrontDiv = document.createElement('div')
-        newFrontDiv.className = "card__face card__face--front"
-        newFrontDiv.style.backgroundImage = `url(${pokeAddress})`
-        // const newImg = document.createElement('img')
-        // newImg.src = pokeAddress
-        // newImg.className = 'card__image'
-        // newFrontDiv.appendChild(newImg)
-        const newBackDiv = document.createElement('div')
-        newBackDiv.className = "card__face card__face--back"
-        newPokeCard.appendChild(newFrontDiv)
-        newPokeCard.appendChild(newBackDiv)
-        newPokeDiv.appendChild(newPokeCard)
-        cardsContainer.appendChild(newPokeDiv)
+      const newPokeDiv = document.createElement('div')
+      newPokeDiv.className = "scene"
+      const newPokeCard = document.createElement('div')
+      newPokeCard.className = "card"
+      const newFrontDiv = document.createElement('div')
+      newFrontDiv.className = "card__face card__face--front"
+      newFrontDiv.style.backgroundImage = `url(${pokeAddress})`
+      // const newImg = document.createElement('img')
+      // newImg.src = pokeAddress
+      // newImg.className = 'card__image'
+      // newFrontDiv.appendChild(newImg)
+      const newBackDiv = document.createElement('div')
+      newBackDiv.className = "card__face card__face--back"
+      newPokeCard.appendChild(newFrontDiv)
+      newPokeCard.appendChild(newBackDiv)
+      newPokeDiv.appendChild(newPokeCard)
+      cardsContainer.appendChild(newPokeDiv)
     })
     return newCardSet
 }

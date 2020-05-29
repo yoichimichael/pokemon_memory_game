@@ -6,6 +6,8 @@ let score = 0
 let strikes = 0 
 let moves = 0
 const startGameLoop = () =>{
+    const endGameModal = document.getElementById('end-game')
+    endGameModal.style.display = "none"
     const cardsContainer = document.getElementById('cards-container') 
     const cardImageSrcs = addPokemonCards()
     window.setTimeout(function(){hideCards();}, 2000);
@@ -43,12 +45,24 @@ const flipCard = (node) =>{
                 console.log(`${strikes} strikes`)
                 if(strikes === 3){
                   console.log("you're a looooossseerrrr");
-                  endGame()
+                  endGame();
                 }
             }, 1200)           
         }
     }
 }
+
+const endGame = () => {
+  const endGameModal = document.getElementById('end-game')
+  const modalDisplayBox = document.getElementById('modal-display-box')
+  endGameModal.style.display = "block"
+  const startGame = document.createElement('button')
+  startGame.id="start-button"
+  startGame.textContent = "Start Game"
+  modalDisplayBox.appendChild(startGame)
+
+  // console.log(endGameModal)
+};
 
 // const gameMaster = () => {
 //     while(strikes > 2){
