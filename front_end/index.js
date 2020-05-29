@@ -75,6 +75,7 @@ document.addEventListener('click', (e)=>{
                 userDiv.dataset.userId = foundUser.id
                 authDiv.style.display = "none"
                 document.querySelector("#login-field").value = ""
+                scorePanel.style.boxShadow = "0px 0px 5px"
                 loadStartButton()
                 loadScore(foundUser.id)
             } else{
