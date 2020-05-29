@@ -10,9 +10,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 document.addEventListener('click', (e)=>{
     // console.log(e.target)
+    const cardsContainer = document.getElementById('cards-container')
     const inputName = document.querySelector("#login-field").value
     const userDiv = document.querySelector('#user-div')
     const authDiv = document.querySelector('#auth-div')
+    const scorePanel = document.getElementById('score-panel')
     if (e.target.textContent ==="Sign Up" ){
         fetch(USERS_URL)
         .then(response => response.json())
@@ -34,6 +36,7 @@ document.addEventListener('click', (e)=>{
                     userDiv.innerHTML=`<p>Welome ${newUser.username}!</p><br><button id="log-out">Log Out</button>`
                     userDiv.dataset.userId = newUser.id
                     authDiv.style.display = "none"
+                    loadStartButton()
                 })
             }
         })
@@ -48,11 +51,7 @@ document.addEventListener('click', (e)=>{
                 userDiv.dataset.userId = foundUser.id
                 authDiv.style.display = "none"
                 document.querySelector("#login-field").value = ""
-                const startGame = document.createElement('button')
-                startGame.id="start-button"
-                startGame.textContent = "Start Game"
-                const cardsContainer = document.getElementById('cards-container')
-                cardsContainer.appendChild(startGame)
+                loadStartButton()
                 loadScore(foundUser.id)
             } else{
                 alert("There is no user with that username. Check your spelling! LOSER!")
@@ -62,6 +61,8 @@ document.addEventListener('click', (e)=>{
         authDiv.style.display = "block"
         userDiv.innerHTML = ""
         userDiv.dataset.userId = ''
+        cardsContainer.innerHTML = ''
+        scorePanel.innerHTML = ''
     } else if (e.target.id === "start-button"){
         e.target.style.display = 'none'
         startGameLoop()
@@ -69,7 +70,16 @@ document.addEventListener('click', (e)=>{
     }
 })
 
-// 
+
+// Load start game button
+const loadStartButton = () =>{
+    const startGame = document.createElement('button')
+    startGame.id="start-button"
+    startGame.textContent = "Start Game"
+    const cardsContainer = document.getElementById('cards-container')
+    cardsContainer.appendChild(startGame)
+}
+// Loading Score
 const loadScore = (userId) => {
     fetch(SCORES_URL)
     .then(response => response.json())
@@ -102,10 +112,6 @@ const addPokemonCards = () =>{
       const newFrontDiv = document.createElement('div')
       newFrontDiv.className = "card__face card__face--front"
       newFrontDiv.style.backgroundImage = `url(${pokeAddress})`
-      // const newImg = document.createElement('img')
-      // newImg.src = pokeAddress
-      // newImg.className = 'card__image'
-      // newFrontDiv.appendChild(newImg)
       const newBackDiv = document.createElement('div')
       newBackDiv.className = "card__face card__face--back"
       newPokeCard.appendChild(newFrontDiv)

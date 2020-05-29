@@ -1,8 +1,8 @@
 .scene{
-    margin: 10px;
-    padding: 10px;
-    width: 9%;
-    height: 13%;
+    margin: 5px;
+    padding: 5px;
+    width: 16%;
+    height: 16%;
     perspective: 600px;
     position: relative;
     flex-basis: auto;
@@ -27,14 +27,14 @@
 }
 
 .card__face--front {
-    background: red;
+    background: #e63900;
     border-radius: 4px;
 }
 .card__image{
     padding: 2px;
 }
 .card__face--back {
-    background: blue;
+    background: #2a75bb;
     transform: rotateY(180deg);
 }
 
