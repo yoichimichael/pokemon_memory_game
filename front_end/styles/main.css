@@ -4,7 +4,27 @@ html * {
 }
 
 body{
-  background-image: url("https://i.imgur.com/0OxQT4l.jpg")
+  overflow: hidden;
+  /* background-image: url("https://i.imgur.com/0OxQT4l.jpg") */
+}
+
+.sliding-background {
+  background: url("https://i.imgur.com/0OxQT4l.jpg") repeat;
+  /* background-repeat: repeat-y; */
+  position: fixed;
+  height: 1000px;
+  width: 5076px;
+  animation: slide 60s linear infinite;
+  z-index: -99;
+}
+
+@keyframes slide {
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-1692px, 0, 0); /* The image width */
+  }
 }
 
 #board-container {
