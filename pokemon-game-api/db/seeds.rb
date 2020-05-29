@@ -8,7 +8,12 @@
 require 'faker'
 
 User.destroy_all
+Score.destroy_all
 
 5.times do 
-    User.create(username:Faker::Name.first_name) 
+  User.create(username:Faker::Name.first_name) 
+end
+
+20.times do
+  Score.create(score: rand(11), user_id: User.all.sample.id)
 end

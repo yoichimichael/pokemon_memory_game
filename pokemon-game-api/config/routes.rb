@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # resources :scores
+  get "/scores", to: "scores#index"
+  post "/scores", to: "scores#create"
   # resources :users
   get "/users", to: "users#index"
   post "/users", to: "users#create"
