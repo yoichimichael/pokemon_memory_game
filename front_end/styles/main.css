@@ -70,6 +70,10 @@ header {
   position: absolute;
 }
 
+#score-panel{
+  margin: 10px;
+}
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

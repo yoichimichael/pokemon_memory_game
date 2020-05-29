@@ -88,7 +88,7 @@ document.addEventListener('click', (e)=>{
         cardsContainer.innerHTML = ''
         scorePanel.innerHTML = ''
     } else if (e.target.id === "start-button"){
-        loadScore()
+        // loadScore(userDiv.dataset.userId)
         strikes = 0
         e.target.style.display = 'none'
         startGameLoop()
@@ -107,19 +107,24 @@ const loadStartButton = () =>{
 }
 // Loading Score
 const loadScore = (userId) => {
+    // console.log(userId)
+    const scorePanel = document.getElementById('score-panel')
+    scorePanel.innerHTML=''
     fetch(SCORES_URL)
     .then(response => response.json())
     .then(scores =>{
         const playerScores = scores.filter(score => score.user_id === userId)
+        // console.log(playerScores)
         const scoreArray = []
         playerScores.forEach(score => {
             scoreArray.push(score.score)
         })
         let highScore = Math.max(...scoreArray)
+        // console.log(highScore)
         if (highScore < 0){
             highScore = 0
         }
-        const scorePanel = document.getElementById('score-panel')
+        // console.log(highScore)
         const scoreDiv = document.createElement('div')
         scoreDiv.textContent = `Your High Score: ${highScore}`
         scorePanel.appendChild(scoreDiv)

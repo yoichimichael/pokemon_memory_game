@@ -98,7 +98,7 @@ const saveScore = (score) => {
   .then(scoreObj => {
     const modalDisplayBox = document.getElementById('modal-display-box')
     const scoreCard = document.createElement('div')
-    scoreCard.textContent = scoreObj.score
+    scoreCard.textContent = `Your score: ${scoreObj.score}`
     modalDisplayBox.appendChild(scoreCard)
   })
 };
