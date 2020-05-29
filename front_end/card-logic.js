@@ -33,6 +33,10 @@ const flipCard = (node) =>{
             console.log(flippedCards)
             score++
             flippedCards = []
+            if(score === 10){
+              // console.log("You win loooooosseerrr")
+              winGame()
+            }
             // change styling to demonstrate match
         }else{
             setTimeout(function(){
@@ -44,7 +48,7 @@ const flipCard = (node) =>{
                 flippedCards = []                
                 console.log(`${strikes} strikes`)
                 if(strikes === 3){
-                  console.log("you're a looooossseerrrr");
+                  // console.log("you're a looooossseerrrr");
                   endGame();
                 }
             }, 1200)           
@@ -55,13 +59,27 @@ const flipCard = (node) =>{
 const endGame = () => {
   const endGameModal = document.getElementById('end-game')
   const modalDisplayBox = document.getElementById('modal-display-box')
+  const modalSpan = document.querySelector(".close")
   endGameModal.style.display = "block"
+  modalSpan.textContent = "Game Over LOOOOOOOOOOSSSSERRRRR"
   const startGame = document.createElement('button')
   startGame.id="start-button"
   startGame.textContent = "Start Game"
   modalDisplayBox.appendChild(startGame)
 
   // console.log(endGameModal)
+};
+
+const winGame = () => {
+  const endGameModal = document.getElementById('end-game')
+  const modalDisplayBox = document.getElementById('modal-display-box')
+  const modalSpan = document.querySelector(".close")
+  endGameModal.style.display = "block"
+  modalSpan.textContent = "You Win LOOOOOOOOOOSSSSERRRRR"
+  const startGame = document.createElement('button')
+  startGame.id="start-button"
+  startGame.textContent = "Start Game"
+  modalDisplayBox.appendChild(startGame)
 };
 
 // const gameMaster = () => {

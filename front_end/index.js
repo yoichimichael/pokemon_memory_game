@@ -100,7 +100,7 @@ const addPokemonCards = () =>{
 
 const newPokemonSetof20 = () => {
     let setOf10 = []
-    for(let i = 0; i<10;i++){
+    for(let i = 0; i < 10; i++){
         setOf10.push(`./assets/${randomPokemonNumber()}.png`)
     }
     let setof20 = setOf10.concat(setOf10)
