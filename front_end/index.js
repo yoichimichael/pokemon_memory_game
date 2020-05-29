@@ -1,4 +1,5 @@
 const USERS_URL = "http://localhost:3000/users"
+const SCORES_URL = "http://localhost:3000/scores"
 const headers = {"Content-Type":"application/json", "Accept":"application/json"}
 
 document.addEventListener("DOMContentLoaded", ()=>{

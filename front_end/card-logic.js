@@ -35,6 +35,7 @@ const flipCard = (node) =>{
             flippedCards = []
             if(score === 10){
               // console.log("You win loooooosseerrr")
+              saveScore(score);
               winGame()
             }
             // change styling to demonstrate match
@@ -49,6 +50,7 @@ const flipCard = (node) =>{
                 console.log(`${strikes} strikes`)
                 if(strikes === 3){
                   // console.log("you're a looooossseerrrr");
+                  saveScore(score);
                   endGame();
                 }
             }, 1200)           
@@ -80,6 +82,25 @@ const winGame = () => {
   startGame.id="start-button"
   startGame.textContent = "Start Game"
   modalDisplayBox.appendChild(startGame)
+};
+
+const saveScore = (score) => {
+  const userDiv = document.getElementById('user-div')
+  fetch(SCORES_URL, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({
+      score: score,
+      user_id: userDiv.dataset.userId
+    })
+  })
+  .then(resp => resp.json())
+  .then(scoreObj => {
+    const modalDisplayBox = document.getElementById('modal-display-box')
+    const scoreCard = document.createElement('div')
+    scoreCard.textContent = scoreObj.score
+    modalDisplayBox.appendChild(scoreCard)
+  })
 };
 
 // const gameMaster = () => {

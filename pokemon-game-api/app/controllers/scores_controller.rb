@@ -6,7 +6,7 @@ class ScoresController < ApplicationController
   end
 
   def create
-      user = Score.create(score: params[:score], user_id: params[:user_id])
+      score = Score.create(score: params[:score], user_id: params[:user_id])
       render json: score, only: [:score, :user_id]
   end
 end
