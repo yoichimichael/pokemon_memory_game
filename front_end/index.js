@@ -3,8 +3,32 @@ const SCORES_URL = "http://localhost:3000/scores"
 const headers = {"Content-Type":"application/json", "Accept":"application/json"}
 
 document.addEventListener("DOMContentLoaded", ()=>{
-
+    // loadHighScores()
 })
+
+// loading highscores
+
+// const loadHighScores = () => {
+//     const scoreBoard = document.getElementById('score-board')
+//     fetch(SCORES_URL)
+//     .then(response => response.json())
+//     .then(scores =>{
+//         console.log(scores)
+//         const playerScores = []
+//         scores.forEach(score => {
+//             playerScores.push(score.score)})
+//         console.log(playerScores)
+//         const topScoreArray = []
+//         for (let i = 0;i<6;i++){
+//             topScoreArray.push(playerScores[i])
+//         }
+//         topScoreArray.forEach(score =>{
+//             const newLi = document.createElement('li')
+//             newLi.textContent = `${score}`
+//             scoreBoard.appendChild(newLi)
+//         })
+//     })
+// }
 
 // New user creation
 
@@ -64,6 +88,8 @@ document.addEventListener('click', (e)=>{
         cardsContainer.innerHTML = ''
         scorePanel.innerHTML = ''
     } else if (e.target.id === "start-button"){
+        loadScore()
+        strikes = 0
         e.target.style.display = 'none'
         startGameLoop()
         // gameMaster()
@@ -89,7 +115,10 @@ const loadScore = (userId) => {
         playerScores.forEach(score => {
             scoreArray.push(score.score)
         })
-        const highScore = Math.max(...scoreArray)
+        let highScore = Math.max(...scoreArray)
+        if (highScore < 0){
+            highScore = 0
+        }
         const scorePanel = document.getElementById('score-panel')
         const scoreDiv = document.createElement('div')
         scoreDiv.textContent = `Your High Score: ${highScore}`

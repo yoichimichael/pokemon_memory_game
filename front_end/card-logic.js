@@ -10,7 +10,7 @@ const startGameLoop = () =>{
     endGameModal.style.display = "none"
     const cardsContainer = document.getElementById('cards-container') 
     const cardImageSrcs = addPokemonCards()
-    window.setTimeout(function(){hideCards();}, 2000);
+    window.setTimeout(function(){hideCards();}, 3000);
     console.log(cardImageSrcs)
 }
 
@@ -63,10 +63,10 @@ const endGame = () => {
   const modalDisplayBox = document.getElementById('modal-display-box')
   const modalSpan = document.querySelector(".close")
   endGameModal.style.display = "block"
-  modalSpan.textContent = "Game Over LOOOOOOOOOOSSSSERRRRR"
+  modalDisplayBox.textContent = "Game Over LOOOOOOOOOOSSSSERRRRR"
   const startGame = document.createElement('button')
   startGame.id="start-button"
-  startGame.textContent = "Start Game"
+  startGame.textContent = "Play Again"
   modalDisplayBox.appendChild(startGame)
 
   // console.log(endGameModal)
