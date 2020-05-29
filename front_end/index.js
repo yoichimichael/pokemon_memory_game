@@ -53,6 +53,7 @@ document.addEventListener('click', (e)=>{
                 startGame.textContent = "Start Game"
                 const cardsContainer = document.getElementById('cards-container')
                 cardsContainer.appendChild(startGame)
+                loadScore(foundUser.id)
             } else{
                 alert("There is no user with that username. Check your spelling! LOSER!")
             }
@@ -68,6 +69,23 @@ document.addEventListener('click', (e)=>{
     }
 })
 
+// 
+const loadScore = (userId) => {
+    fetch(SCORES_URL)
+    .then(response => response.json())
+    .then(scores =>{
+        const playerScores = scores.filter(score => score.user_id === userId)
+        const scoreArray = []
+        playerScores.forEach(score => {
+            scoreArray.push(score.score)
+        })
+        const highScore = Math.max(...scoreArray)
+        const scorePanel = document.getElementById('score-panel')
+        const scoreDiv = document.createElement('div')
+        scoreDiv.textContent = `Your High Score: ${highScore}`
+        scorePanel.appendChild(scoreDiv)
+    })
+}
 
 // This stuff loads cards to the board
 
