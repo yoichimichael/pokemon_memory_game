@@ -147,6 +147,7 @@ const addPokemonCards = () =>{
       newFrontDiv.className = "card__face card__face--front"
       newFrontDiv.style.backgroundImage = `url(${pokeAddress})`
       const newBackDiv = document.createElement('div')
+      newBackDiv.style.backgroundImage =`url("https://media.giphy.com/media/jQbinPsqqfg8GFxbQw/giphy.gif")`
       newBackDiv.className = "card__face card__face--back"
       newPokeCard.appendChild(newFrontDiv)
       newPokeCard.appendChild(newBackDiv)

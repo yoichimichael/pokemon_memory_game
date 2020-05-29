@@ -36,6 +36,7 @@
 .card__face--back {
     background: #2a75bb;
     transform: rotateY(180deg);
+    background-image: url("https://media.giphy.com/media/jQbinPsqqfg8GFxbQw/giphy.gif");
 }
 
 .card.is-flipped {
