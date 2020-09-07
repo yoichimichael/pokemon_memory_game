@@ -71,7 +71,7 @@ document.addEventListener('click', (e)=>{
             const foundUser = users.find(function (user){return user.username === inputName})
             if (foundUser){
                 // document.querySelector('#error').style.display = "block"
-                userDiv.innerHTML=`<p>Welome ${foundUser.username}!</p><br><button id="log-out">Log Out</button>`
+                userDiv.innerHTML=`<p>Welcome ${foundUser.username}!</p><br><button id="log-out">Log Out</button>`
                 userDiv.dataset.userId = foundUser.id
                 authDiv.style.display = "none"
                 document.querySelector("#login-field").value = ""
@@ -88,6 +88,7 @@ document.addEventListener('click', (e)=>{
         userDiv.dataset.userId = ''
         cardsContainer.innerHTML = ''
         scorePanel.innerHTML = ''
+        scorePanel.style.boxShadow = ''
     } else if (e.target.id === "start-button"){
         // loadScore(userDiv.dataset.userId)
         strikes = 0
@@ -192,57 +193,3 @@ const randomPokemonNumber = ()=>{
         return pokeString
     }
 }
-
-// Old random set function
-    // setOf10.forEach(pokeAddress=>{
-    //     let coinFlip = Math.floor(Math.random()*(2) + 1)
-    //     if (coinFlip === 2){
-    //         newSet.push(pokeAddress)
-    //     } else if (coinFlip ===1){
-    //         newSet.unshift(pokeAddress)
-    //     }
-    // })
-    // setOf10.forEach(pokeAddress=>{
-    //     let coinFlip = Math.floor(Math.random()*(2) + 1)
-    //     if (coinFlip === 2){
-    //         newSet.push(pokeAddress)
-    //     } else if (coinFlip ===1){
-    //         newSet.unshift(pokeAddress)
-    //     }
-    // })
-    // return newSet
-
-// Old Game Listener
-// document.addEventListener('click', (e)=>{
-//     if(e.target.className === "card__image"){
-//         // e.target.parentNode.parentNode.classList.toggle('is-flipped');
-        
-//         if (e.target.style.opacity === "0"){
-//             e.target.style.opacity = "1"
-//             if(firstImage===false){
-//                 firstImage = e.target
-//                 console.log(firstImage)
-//             } else if(firstImage===true){
-//                 if (firstImage.src===e.target.src){
-//                     firstImage = ''
-//                     score++
-//                     console.log(score)
-//                 } else{
-//                     e.target.style.opacity = "0"
-//                     firstImage.style.opacity = "0"
-//                     strikes++
-//                     console.log(strikes)
-//                     if (strikes>2){
-//                         cardsContainer.innerHTML = ''
-//                         const startGame = document.createElement('button')
-//                         startGame.id="start-button"
-//                         startGame.textContent = "Start Game"
-//                         cardsContainer.appendChild(startGame)
-//                         return "game over"
-//                     }
-//                 }
-//             }
-//         }
-        
-//     }
-// })
